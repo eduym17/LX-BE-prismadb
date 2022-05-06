@@ -28,3 +28,12 @@ model example {
   enrollments Int @default(1)
   hasCertification Boolean @default(false)
 }
+
+model stack {
+  id Int @id @default(autoincrement())
+  name String @unique
+  username String @db.VarChar(255)
+  mainStack String @db.VarChar(255)
+  currentEnrollment Int @default(1)
+  hasAzureCertification Boolean @default(false)
+}
