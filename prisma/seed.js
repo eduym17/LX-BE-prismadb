@@ -93,6 +93,17 @@ const prisma = new PrismaClient();
       },
     });
 
+    const stackUser = await prisma.stack.upsert({
+      where: { name: 'stackUser1'},
+      update: {},
+      create: {
+        name: 'stackUser1',
+        username: 'eduym1',
+        mainStack: 'javascript',
+        hasAzureCertification: true,
+      }
+    });
+
     console.log('Create 9 explorers');
   } catch(e) {
     console.error(e);
