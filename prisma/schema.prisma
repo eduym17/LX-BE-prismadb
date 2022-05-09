@@ -34,6 +34,6 @@ model stack {
   name String @unique
   username String @db.VarChar(255)
   mainStack String @db.VarChar(255)
-  currentEnrollment Int @default(1)
+  currentEnrollment Boolean @default(true)
   hasAzureCertification Boolean @default(false)
 }
