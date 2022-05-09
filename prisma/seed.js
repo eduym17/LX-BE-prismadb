@@ -93,6 +93,26 @@ const prisma = new PrismaClient();
       },
     });
 
+    const example3 = await prisma.example.upsert({
+      where: { name: 'example3' },
+      update: {},
+      create: {
+        name: 'example3',
+				lang: 'javascript',
+				missionCommander: 'CarloGilmar'
+      },
+    });
+
+    const example4 = await prisma.example.upsert({
+      where: { name: 'example4' },
+      update: {},
+      create: {
+        name: 'example4',
+				lang: 'javascript',
+				missionCommander: 'CarloGilmar'
+      },
+    });
+
     const stackUser = await prisma.stack.upsert({
       where: { name: 'stackUser1'},
       update: {},
@@ -101,6 +121,26 @@ const prisma = new PrismaClient();
         username: 'eduym1',
         mainStack: 'javascript',
         hasAzureCertification: true,
+      }
+    });
+
+    const stackUser2 = await prisma.stack.upsert({
+      where: { name: 'stackUser2'},
+      update: {},
+      create: {
+        name: 'stackUser2',
+        username: 'eduym2',
+        mainStack: 'javascript'
+      }
+    });
+
+    const stackUser3 = await prisma.stack.upsert({
+      where: { name: 'stackUser3'},
+      update: {},
+      create: {
+        name: 'stackUser3',
+        username: 'eduym3',
+        mainStack: 'java'
       }
     });
 
