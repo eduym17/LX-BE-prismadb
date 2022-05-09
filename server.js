@@ -106,6 +106,51 @@ app.delete('/example/:id', async (req, res) => {
 	return res.json({message: "Eliminado correctamente"});
 });
 
+app.get('/stacks', async (req, res) => {
+  const allStacks = await prisma.stack.findMany({});
+  res.json(allStacks);
+});
+
+app.get('/stacks/:id', async (req, res) => {
+  const id = req.params.id;
+  const stackUser = await prisma.stack.findUnique({where: {id: parseInt(id)}});
+  res.json(stackUser);
+});
+
+app.post('/stacks', async (req, res) => {
+  const explorer = {
+    name: req.body.name,
+    username: req.body.username,
+    mainStack: req.body.mainStack
+   };
+  const message = 'Explorer creado.';
+  await prisma.stack.create({data: explorer});
+  console.log('POST')
+  return res.json({message});
+});
+
+app.put('/stacks/:id', async (req, res) => {
+	const id = parseInt(req.params.id);
+
+	await prisma.stack.update({
+		where: {
+			id: id
+		},
+		data: {
+      name: req.body.name,
+			mainStack: req.body.mainStack
+		}
+	});
+
+	return res.json({message: "Actualizado correctamente"});
+});
+
+app.delete('/stacks/:id', async (req, res) => {
+	const id = parseInt(req.params.id);
+	await prisma.stack.delete({where: {id: id}});
+	return res.json({message: "Eliminado correctamente"});
+});
+
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
 });
